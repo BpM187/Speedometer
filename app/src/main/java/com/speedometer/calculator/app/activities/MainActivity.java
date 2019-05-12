@@ -1,7 +1,6 @@
-package com.example.robert.speedometer;
+package com.speedometer.calculator.app.activities;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -14,13 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.security.Provider;
+import com.speedometer.calculator.app.R;
+import com.speedometer.calculator.app.constants.Constants;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView startTime;
 
-    final int MY_LOCATION_PERMISION_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_LOCATION_PERMISION_CODE);
+                    Constants.MY_LOCATION_PERMISSION_CODE);
         } else if (locationObject != null) {
 
             LocationListener locationListener = new LocationListener() {

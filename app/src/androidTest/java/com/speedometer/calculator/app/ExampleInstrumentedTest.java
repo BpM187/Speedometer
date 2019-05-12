@@ -1,4 +1,4 @@
-package com.example.robert.speedometer;
+package com.speedometer.calculator.app;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
