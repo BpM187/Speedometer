@@ -1,7 +1,6 @@
-package com.example.robert.speedometer;
+package com.speedometer.calculator.app.activities;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -14,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.security.Provider;
+import com.speedometer.calculator.app.R;
 
 public class MainActivity extends AppCompatActivity {
 

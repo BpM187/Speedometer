@@ -1,4 +1,4 @@
-package com.example.robert.speedometer;
+package com.speedometer.calculator.app;
 
 import org.junit.Test;
 
