@@ -44,7 +44,7 @@ public class LocationActivity extends BaseActivity {
 
     //views
     private LinearLayout llResultsList;
-    private TextView txtSpeed, txtAltitude, txtDistance;
+    private TextView txtSpeed, txtTime, txtDistance;
     private ASurface surface;
 
     //variables received from other class
@@ -65,6 +65,8 @@ public class LocationActivity extends BaseActivity {
     private double d_distance;
     private double alpha_elevation;
 
+    private long startTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +77,7 @@ public class LocationActivity extends BaseActivity {
         initViews();
         handleLocation();
         setListeners();
+        hideKeyboard();
     }
 
     private void getValuesFromBundle() {
@@ -94,7 +97,7 @@ public class LocationActivity extends BaseActivity {
         //views
         llResultsList = findViewById(R.id.ll_results_list);
         txtSpeed = findViewById(R.id.txt_speed);
-        txtAltitude = findViewById(R.id.txt_altitude);
+        txtTime = findViewById(R.id.txt_time);
         txtDistance = findViewById(R.id.txt_distance);
         surface = findViewById(R.id.surface);
 
@@ -137,6 +140,9 @@ public class LocationActivity extends BaseActivity {
 
 
     private void handleLocation() {
+        //start time
+        startTime = Calendar.getInstance().getTimeInMillis();
+
         // Register class as listener
         LocationManager locationObject = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         // Check permission
@@ -148,6 +154,7 @@ public class LocationActivity extends BaseActivity {
             LocationListener locationListener = new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
+
                     if (location == null) {
                         v_speed = 0;
                         alpha_elevation = 0;
@@ -156,25 +163,35 @@ public class LocationActivity extends BaseActivity {
                     } else {
                         //speed in km/h
                         v_speed = location.getSpeed() * 3.6f; //from m/s in km/h
+                        v_speed = 10;
 
                         //elevation/altitude
                         alpha_elevation = location.getAltitude();
 
                         //time in h
-                        t_time = Calendar.getInstance().getTimeInMillis()/(60*60*1000); //from s in h
+                        t_time = Calendar.getInstance().getTimeInMillis() - startTime;
 
                         //distance in km
                         // distance (m) = speed (m/s) * time(s) => distance (km) = speed(km/h) * time (h)
-                        d_distance = v_speed * t_time;
+                        d_distance = location.getSpeed() * (t_time / 1000); //time from ms in h
+                        d_distance = v_speed * (t_time / (60 * 60 * 1000)); //time from ms in h
+                    }
+
+
+                    long min = t_time / (60 * 1000);
+                    long hour = min / 60;
+                    if (hour > 0) {
+                        min = min - (hour * 60);
                     }
 
                     txtSpeed.setText(String.format("%.2f", v_speed));
-                    txtAltitude.setText(String.valueOf(getString(R.string.altitude) + "\n" + String.format("%.2f", alpha_elevation)));
-                    txtDistance.setText(String.valueOf(getString(R.string.distance) + "\n" + String.format("%.2f", d_distance)));
+                    txtTime.setText(String.valueOf(hour + " h " + min + " min"));
+                    txtDistance.setText(String.format("%.2f", d_distance) + " km");
 
                     surface.setProgress(Math.round(v_speed));
 
                     updateParamsValues();
+                    hideKeyboard();
                 }
 
                 @Override
@@ -334,7 +351,6 @@ public class LocationActivity extends BaseActivity {
         }
 
         addDataToList();
-
     }
 
     private void addDataToList() {

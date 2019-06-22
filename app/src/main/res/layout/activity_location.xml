@@ -42,31 +42,59 @@
         android:layout_below="@id/rl_header"
         android:background="@drawable/background_01">
 
-        <!--speed elevation distance-->
-        <TextView
-            android:id="@+id/txt_altitude"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+        <!--time-->
+        <ImageView
+            android:id="@+id/img_time"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:alpha="0.5"
-            android:background="@drawable/brown_template_odd_corners"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Elevation\n678.90"
-            android:textAllCaps="true"
+            android:padding="2dp"
+            android:src="@drawable/icon_time" />
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/img_time"
+            android:layout_toRightOf="@id/img_time"
+            android:fontFamily="@font/militech"
+            android:gravity="center_vertical|start"
+            android:maxLines="1"
+            android:text="0 h 0 min"
             android:textColor="@color/colorWhite"
             android:textSize="14sp" />
 
+        <!--distance-->
+        <ImageView
+            android:id="@+id/img_distance"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/txt_distance"
+            android:alpha="0.5"
+            android:src="@drawable/icon_distance" />
+
         <TextView
             android:id="@+id/txt_distance"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:alpha="0.5"
-            android:background="@drawable/gray_template_odd_corners"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Distance\n678.90"
-            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/militech"
+            android:gravity="center_vertical|end"
+            android:maxLines="1"
+            android:text="0.00 km"
             android:textColor="@color/colorWhite"
             android:textSize="14sp" />
 
@@ -78,6 +106,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/template_speed_06" />
 
+        <!--speed-->
         <TextView
             android:id="@+id/txt_speed"
             android:layout_width="wrap_content"
@@ -89,6 +118,7 @@
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"
             android:textSize="50sp" />
+
 
         <TextView
             android:id="@+id/txt_speed_kph"
@@ -111,18 +141,6 @@
             android:layout_centerInParent="true"
             android:visibility="visible" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true"
-            android:indeterminate="false"
-            android:max="220"
-            android:progressDrawable="@drawable/custom_progress_bar"
-            android:visibility="gone" />
-
-
     </RelativeLayout>
 
     <ScrollView
@@ -143,11 +161,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical" />
-
-            <View
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="1px" />
 
             <LinearLayout
                 android:id="@+id/ll_results_list"
