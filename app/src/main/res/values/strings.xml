@@ -1,4 +1,95 @@
 <resources>
     <string name="app_name">Speedometer</string>
     <string name="start_time">0.0 m/s</string>
+    <string name="menu_start">Start</string>
+    <string name="value">Value</string>
+    <string name="init_vehicle">Initialize vehicle</string>
+    <string name="menu_about">About</string>
+    <string name="menu_historic">Historic</string>
+    <string name="menu_instructions">Instructions</string>
+    <string name="pager_init_params">Initialize params</string>
+    <string name="pager_choose_vehicle">Choose vehicle</string>
+    <string name="choose_data">Choose parameter introduction method</string>
+    <string name="or">or</string>
+    <string name="next">Next</string>
+
+    <string name="introduce_params">Introduce params</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="stop">Stop</string>
+    <string name="add">Add</string>
+    <string name="menu_exit">Exit</string>
+    <string name="add_photo">Add photo</string>
+    <string name="brand_model">brand_model</string>
+    <string name="logo_brand">logo_brand</string>
+    <string name="attach_photo">Attach image</string>
+    <string name="change_image">Change image</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="remove_photo">Remove photo</string>
+    <string name="back">Back</string>
+
+    <string name="vehicle_header_general_info">General information</string>
+    <string name="vehicle_model">Model</string>
+    <string name="vehicle_brand">Brand</string>
+    <string name="vehicle_brand_photo">Brand photo</string>
+    <string name="vehicle_model_photo">Model photo</string>
+    <string name="vehicle_generation">Generation</string>
+    <string name="vehicle_change_motor_type">Change (Motor type)</string>
+
+    <string name="vehicle_header_volume_weights">Volume and weights</string>
+    <string name="vehicle_own_weight">Own weight</string>
+    <string name="vehicle_maxim_authorized_weight">Maxim authorized weight</string>
+    <string name="vehicle_maxim_trunk_volume">Maxim trunk volume</string>
+    <string name="vehicle_minim_trunk_volume">Minim trunk volume</string>
+    <string name="vehicle_tank_adblue">AdBlue tank</string>
+    <string name="vehicle_tank_volume">Tank volume</string>
+    <string name="vehicle_gauge_back">Gauge back</string>
+    <string name="vehicle_gauge_front">Gauge front</string>
+
+    <string name="vehicle_header_dimensions">Dimensions</string>
+    <string name="vehicle_height">Height</string>
+    <string name="vehicle_length">Length</string>
+    <string name="vehicle_wheelbase">Wheelbase</string>
+    <string name="vehicle_width">Width</string>
+    <string name="vehicle_width_mirrors">Width (mirrors included)</string>
+
+    <string name="vehicle_acceleration_0_100">Acceleration from 0 to 100</string>
+    <string name="vehicle_fuel_consume_mixt">Fuel consume - mixt</string>
+    <string name="vehicle_fuel_type">Fuel type</string>
+    <string name="vehicle_header_performance">Performance</string>
+    <string name="vehicle_maxim_speed">Maxim speed</string>
+
+    <string name="vehicle_header_engine">Engine</string>
+    <string name="vehicle_power">Power</string>
+    <string name="vehicle_torque">Torque</string>
+
+    <string name="vehicle_header_coefficient">Coefficients</string>
+    <string name="vehicle_coefficient">C(x)</string>
+    <string name="admin">Admin</string>
+
+    <string name="crud_create">Create</string>
+    <string name="crud_read">Read</string>
+    <string name="crud_update">Update</string>
+    <string name="crud_delete">Delete</string>
+    <string name="blocked">BLOCKED</string>
+    <string name="exist">Exist</string>
+    <string name="edit">Edit</string>
+
+    <string name="no_vehicle">There are no vehicle introduced</string>
+    <string name="show_image">Show image</string>
+    <string name="parameter_mandatory">is mandatory</string>
+    <string name="parameter_must_complete">must be complete</string>
+    <string name="error_database">An error occurred while adding the params in database. Please check the introduced values and try again.</string>
+    <string name="enter_admin_password">Enter admin password</string>
+    <string name="alert_delete_vehicle">Do you really want do delete this vehicle?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="alert_vehicle_created">The vehicle was successfully created</string>
+    <string name="alert_vehicle_updated">The vehicle was successfully updated</string>
+    <string name="altitude">Altitude</string>
+    <string name="speed">Speed</string>
+    <string name="distance">Distance</string>
+
+
 </resources>

@@ -1,74 +1,106 @@
 package com.speedometer.calculator.app.activities;
 
 import android.Manifest;
-import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.widget.Toast;
 
 import com.speedometer.calculator.app.R;
 import com.speedometer.calculator.app.constants.Constants;
+import com.speedometer.calculator.app.db.SQLiteHelper;
+import com.speedometer.calculator.app.fragments.MenuFragment;
+import com.speedometer.calculator.app.model.RefreshCallback;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    TextView startTime;
-
+    boolean doubleBackToExitPressedOnce;
+    public RefreshCallback refreshCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startTime = findViewById(R.id.startTime);
+        //exit app
+        if (getIntent().getBooleanExtra("Exit me", false)) {
+            finish();
+        }
 
-        // Register class as listener
-        LocationManager locationObject = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        // Check permission
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                    Constants.MY_LOCATION_PERMISSION_CODE);
-        } else if (locationObject != null) {
+        addFragment(new MenuFragment(), "MENU_01");
+    }
 
-            LocationListener locationListener = new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
 
-                    if (location == null) {
-                        startTime.setText("-.- m/s");
-                    } else {
-                        float nCurrentSpeed = location.getSpeed();
-                        startTime.setText(nCurrentSpeed + " m/s");
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        boolean cameraAccepted = true;
+        for (int i = 0; i < permissions.length; i++) {
+            switch (permissions[i]) {
+                case Manifest.permission.CAMERA: {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        cameraAccepted = false;
                     }
+                    break;
                 }
+                case Manifest.permission.WRITE_EXTERNAL_STORAGE: {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        cameraAccepted = false;
+                    }
+                    break;
+                }
+                case Manifest.permission.READ_EXTERNAL_STORAGE: {
+                    //gallery accepted, go to main menu
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED && requestCode == Constants.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
+                        if (refreshCallback != null) {
+                            refreshCallback.doRefresh(true);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+
+        //camera accepted, go to main menu
+        if (requestCode == Constants.MY_PERMISSIONS_REQUEST_CAMERA && cameraAccepted && refreshCallback != null) {
+            refreshCallback.doRefresh(true);
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager manager = getSupportFragmentManager();
+        Fragment fragment = manager.findFragmentById(R.id.container);
+        if (fragment instanceof MenuFragment) {
+
+            if (doubleBackToExitPressedOnce) {
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Exit me", true);
+                startActivity(intent);
+                finish();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
 
                 @Override
-                public void onStatusChanged(String provider, int status, Bundle extras) {
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
                 }
-
-                @Override
-                public void onProviderEnabled(String provider) {
-                }
-
-                @Override
-                public void onProviderDisabled(String provider) {
-                }
-            };
-
-
-            Criteria criteria = new Criteria();
-//            criteria.setAccuracy(Criteria.ACCURACY_FINE);
-            String provider = locationObject.getBestProvider(criteria, true);
-            locationObject.requestLocationUpdates(provider, 0, 0, locationListener);
-//            locationObject.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-//            locationObject.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
+            }, 2000);
+        } else {
+            super.onBackPressed();
         }
     }
 }

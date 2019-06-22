@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <!--header-->
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBrown">
+
+        <!--header-->
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="17dp"
+            android:padding="5dp"
+            android:src="@drawable/icon_back_white" />
+
+        <TextView
+            android:id="@+id/txt_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/img_back"
+            android:fontFamily="@font/militech"
+            android:gravity="center_vertical"
+            android:text="@string/crud_create"
+            android:textColor="@color/colorWhite"
+            android:textSize="23sp" />
+    </RelativeLayout>
+
+    <!--content-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/txt_action"
+        android:layout_below="@id/rl_header">
+
+        <LinearLayout
+            android:id="@+id/ll_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+
+    <!--top shadow-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@id/rl_header"
+        android:background="@drawable/shadow_top" />
+
+    <!--bottom shadow-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_above="@id/txt_action"
+        android:background="@drawable/shadow_bottom" />
+
+    <!--action button add/update-->
+    <TextView
+        android:id="@+id/txt_action"
+        android:layout_width="140dp"
+        android:layout_height="90dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shadow_round_gray_01"
+        android:fontFamily="@font/militech"
+        android:gravity="center"
+        android:text="@string/add"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <!--alert success-->
+    <LinearLayout
+        android:id="@+id/ll_alert"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackTransparent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:padding="30dp"
+            android:src="@drawable/alert_success" />
+
+        <TextView
+            android:id="@+id/txt_alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/alert_vehicle_created"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_01">
+
+    <!--menu-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@id/txt_start"
+            android:layout_marginLeft="-14dp"
+            android:layout_marginBottom="6dp"
+            android:layout_toRightOf="@id/txt_start"
+            android:src="@drawable/icon_wheel" />
+
+        <TextView
+            android:id="@+id/txt_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/militech"
+            android:text="@string/menu_start"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/txt_instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_start"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/militech"
+            android:text="@string/menu_instructions"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/txt_historic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_instruction"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/militech"
+            android:text="@string/menu_historic"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/txt_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_historic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/militech"
+            android:text="@string/menu_about"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/txt_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_about"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/militech"
+            android:text="@string/menu_exit"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            tools:ignore="MissingPrefix" />
+
+        <ImageView
+            android:id="@+id/img_exit"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@id/txt_about"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="30dp"
+            android:src="@drawable/icon_exit"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <!--car image-->
+    <ImageView
+        android:id="@+id/img_vehicle"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="-50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_car_01" />
+
+    <!--password-->
+    <LinearLayout
+        android:id="@+id/ll_password"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackTransparent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="280dp"
+            android:layout_height="100dp"
+            android:background="@drawable/white_corners"
+            android:gravity="center"
+            android:hint="@string/enter_admin_password"
+            android:textAlignment="center"
+            android:textColor="@color/colorBrown"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>
