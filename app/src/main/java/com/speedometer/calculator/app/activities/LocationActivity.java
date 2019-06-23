@@ -163,7 +163,6 @@ public class LocationActivity extends BaseActivity {
                     } else {
                         //speed in km/h
                         v_speed = location.getSpeed() * 3.6f; //from m/s in km/h
-                        v_speed = 10;
 
                         //elevation/altitude
                         alpha_elevation = location.getAltitude();
@@ -360,6 +359,16 @@ public class LocationActivity extends BaseActivity {
         rez.setSpeed(v_speed);
         rez.setAltitude(alpha_elevation);
         rez.setDistance(d_distance);
+
+        //if somehow at conversion with string double values contains "," than replace that with "."
+        resultsParamList.get(0).setValue(resultsParamList.get(0).getValue().replace(",", "."));
+        resultsParamList.get(1).setValue(resultsParamList.get(1).getValue().replace(",", "."));
+        resultsParamList.get(2).setValue(resultsParamList.get(2).getValue().replace(",", "."));
+        resultsParamList.get(3).setValue(resultsParamList.get(3).getValue().replace(",", "."));
+        resultsParamList.get(4).setValue(resultsParamList.get(4).getValue().replace(",", "."));
+        resultsParamList.get(5).setValue(resultsParamList.get(5).getValue().replace(",", "."));
+
+        //add to list
         rez.setRr(Double.parseDouble(resultsParamList.get(0).getValue()));
         rez.setRa(Double.parseDouble(resultsParamList.get(1).getValue()));
         rez.setRd(Double.parseDouble(resultsParamList.get(2).getValue()));
