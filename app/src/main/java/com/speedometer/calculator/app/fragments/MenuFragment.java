@@ -122,7 +122,7 @@ public class MenuFragment extends BaseFragment {
         baseView.findViewById(R.id.txt_instruction).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                replaceFragment(new InstructionFragment(), "InstructionFragment");
             }
         });
 
